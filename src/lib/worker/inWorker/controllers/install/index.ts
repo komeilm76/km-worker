@@ -1,7 +1,7 @@
 import { Install } from './types';
-const controller = (e: Install.Event, options: { cachePaths: string[] }) => {
+const controller = (e: Install.Event, options: { cachePaths: string[]; cacheName: string }) => {
   e.waitUntil(
-    caches.open('v1').then((res) => {
+    caches.open(options.cacheName).then((res) => {
       res.addAll(options.cachePaths);
     })
   );

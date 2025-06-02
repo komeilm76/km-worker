@@ -68,7 +68,7 @@ type IWorkerConfig<
   name: WORKER_NAME;
   cacheName: CACHE_NAME;
   path: string;
-  listeners: [...EVENTS];
+  listeners?: [...EVENTS];
 };
 const makeWorkerConfig = <
   CONFIG extends IWorkerConfig<WORKER_NAME, CACHE_NAME, EVENT, [...EVENTS]>,

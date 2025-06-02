@@ -10,8 +10,8 @@ type IRegisteryItemOptions = {
 
 type IRegisterEntry<PATH extends string> = {
   path: PATH;
-  onRegisteration: (registration: ServiceWorkerRegistration) => void;
-  onError: (error: any) => void;
+  onRegisteration?: (registration: ServiceWorkerRegistration) => void;
+  onError?: (error: any) => void;
   options: IRegisteryItemOptions;
 };
 
@@ -44,13 +44,13 @@ const register = <PATH extends string, ENTRY extends IRegisterEntry<PATH>, ENTRI
                 )
               );
             }
-            item.onRegisteration(registration);
+            item.onRegisteration && item.onRegisteration(registration);
           },
           (error) => {
             if (options.autoErrorLog == true) {
               console.log(chalk.red(`[error on register ${item.path}]`), error);
             }
-            item.onError(error);
+            item.onError && item.onError(error);
           }
         );
       });
